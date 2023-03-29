@@ -2,7 +2,7 @@ import torch
 from riffusion_pipeline import RiffusionPipeline
 def download_model():
     model = RiffusionPipeline.from_pretrained(
-        "riffusion/riffusion-model-v1",
+        "spaceinvader/fart",
         revision="main",
         torch_dtype=torch.float16,
         # Disable the NSFW filter, causes incorrect false positives

@@ -21,8 +21,8 @@ def wav_bytes_from_spectrogram_image(image: Image.Image) -> T.Tuple[io.BytesIO, 
     power_for_image = 0.25
     Sxx = spectrogram_from_image(image, max_volume=max_volume, power_for_image=power_for_image)
 
-    sample_rate = 44100  # [Hz]
-    clip_duration_ms = 3000  # [ms]
+    sample_rate = 22500  # [Hz]
+    clip_duration_ms = 5000  # [ms]
 
     bins_per_image = 512
     n_mels = 512
@@ -35,8 +35,8 @@ def wav_bytes_from_spectrogram_image(image: Image.Image) -> T.Tuple[io.BytesIO, 
     # Derived parameters
     num_samples = int(image.width / float(bins_per_image) * clip_duration_ms) * sample_rate
     n_fft = int(padded_duration_ms / 1000.0 * sample_rate)
-    hop_length = int(step_size_ms / 1000.0 * sample_rate)
-    win_length = int(window_duration_ms / 1000.0 * sample_rate)
+    hop_length = 128
+    win_length = 128
 
     samples = waveform_from_spectrogram(
         Sxx=Sxx,
